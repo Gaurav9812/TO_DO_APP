@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To DO App</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./images/list.png" type="image/x-icon">
+    <title>title1</title>
+</head>
+<body>
+    
+    <div id="outer-div">
+        <div id="to-do-app">
+            
+                <h1>ToDo App</h1>
+                <!-- form to add  a task -->
+                <form action="/create-task" method="post" id="adding-task">
+                    <div class="style-border-class">
+                        <div class="flex-box">
+                            <label for="desc">DESCRIPTION</label>
+                            <input type="text" id="desc" placeholder="what do you need to do" name="description" required>
+                        </div>
+                    </div>
+                    <div class="style-border-class" id="cat-dat"> 
+                       <div class="flex-box" id="cat">
+                        <label for="category">CATEGORY</label>
+                        <select  id="category"  name="category">
+                            <option value="" selected disabled >Choose a category</option>
+                            <option value="Personal">Personal</option>
+                            <option value="cleaning">cleaning</option>
+                            <option value="school">school</option>
+                            <option value="work">work</option>
+                            <option value="other">other</option>
+                        </select>
+                        </div>
+                         <div class="flex-box">
+                            <label for="">DUE DATE</label>
+                            <input type="Date" placeholder="dd/mm/yyy" name ="date">
+                         </div>
+                     </div>
+            
+                </form>
+                <!-- buttons for forms and night mode -->
+                <div class="style-border-class">
+                    <button id="add-task" type="submit" form="adding-task"><i class="fas fa-plus"></i>ADD TASK</button>
+                    <button id="delete" form="delete-form"><i class="fas fa-trash-alt"></i>DELETE</button>
+                    <button id="night-mode"><i class="fas fa-moon"></i> </button>
+                </div>
+                <!--  form for deleting task -->
+                <form action="/delete-task" method="post" id="delete-form">
+                   <div id="TodaysTask">
+                      <h3 class="heading-task">Todays task</h3>
+                    </div>
+                    <div id="FutureTask">
+                        <h3  class="heading-task">Future & past task</h3>
+                    
+                        <%for( let i of tasks) {%>
+                        <div class="style-border-class tasks" >
+                            <div class="descdat">
+                        
+                            <input type="checkbox" name="id" value=<%=i._id%>>
+                            <div >
+                            <div class="desc"><%=i.description%></div>
+                            <div class="date"><i class="fas fa-calendar-alt"></i><%=i.date%></div>
+                            </div>
+                             </div>
+                            <div class="category">
+                            <%=i.category%>
+                            </div>
+                        </div>
+                         <%}%>
+                     </div>
+                </form>
+        </div>
+
+    </div>
+    
+        <!-- javascript import -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    
+        <script type="text/javascript" src="./js/script.js"></script>
+</body>
+</html>
